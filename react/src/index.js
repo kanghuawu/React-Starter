@@ -6,7 +6,9 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import App from './components/app';
+import Second from './components/second';
 import reducers from './reducers';
+import '../style/style.css';
 
 const store = createStore(reducers, {}, applyMiddleware(thunk));
 const token = localStorage.getItem('token');
@@ -20,7 +22,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/hello" component={App} />
+          <Route path="/second" component={Second} />
           <Route path="/" component={App} />
         </Switch>
       </div>
