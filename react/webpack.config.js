@@ -3,51 +3,47 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: {
-    bundle: './src/index.js'
-  },
-  output: {
-    path: path.join(__dirname, 'build'),
-    filename: '[name].[chunkhash].js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: [
-            'react',
-            'stage-0',
-            ['env', { targes: { browsers: ['last 2 versions'] } }]
-          ]
-        }
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: { limit: 40000 }
-          },
-          'image-webpack-loader'
+    entry: {
+        bundle: './src/index.js'
+    },
+    output: {
+        path: path.join(__dirname, 'build'),
+        filename: '[name].[chunkhash].js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                options: {
+                    presets: ['react', 'es2015', 'stage-0']
+                }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {limit: 40000}
+                    },
+                    'image-webpack-loader'
+                ]
+            }
         ]
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    })
-  ],
-  devServer: {
-    port: 3000,
-    historyApiFallback: true,
-    contentBase: './'
-  }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'src/index.html'
+        })
+    ],
+    devServer: {
+        port: 3000,
+        historyApiFallback: true,
+        contentBase: './'
+    }
 };
